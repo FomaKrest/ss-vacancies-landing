@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: Inter;
 }
 
 body {
@@ -29,7 +30,7 @@ body {
 }
 
 .big-text {
-  font-size: 60px;
+  font-size: calc(30px + 2vw);
 }
 
 .normal-text {
@@ -38,6 +39,10 @@ body {
 
 .small-text {
   font-size: 20px;
+}
+
+.bold-text {
+  font-weight: 600;
 }
 
 .black-text {
@@ -60,7 +65,7 @@ body {
   border-radius: 10px;
   padding: 0px;
   overflow: hidden;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -115,7 +120,6 @@ body {
 }
 
 .first-screen {
-  min-height: 1108px;
   padding-top: 96px;
   display: grid;
   grid-auto-flow: row;
@@ -123,7 +127,6 @@ body {
 }
 
 .first-screen-img {
-  margin-top: 20px;
   width: 100%;
   height: 50%;
   border: thick solid #D79127;
@@ -144,8 +147,15 @@ body {
   text-align: center;
 }
 
+@media screen and (min-width: 769px) {
+  .advantages-list { text-align: left; }
+}
+
+@media screen and (max-width: 768px) {
+  .advantages-list { text-align: center; }
+}
+
 .advantages-list {
-  text-align: left;
   margin: 10px;
 }
 
@@ -172,6 +182,23 @@ body {
   position: relative;
 }
 
+.vacancy-name {
+  position: absolute; 
+  top: 0;
+}
+
+.vacancy-link {
+  position: absolute; 
+  bottom: 0;
+}
+
+.vacancy-contents-container {
+  height: 100%; 
+  position: relative;
+}
+
+
+
 .closed-vacancy {
   background-color: #eee;
 }
@@ -186,6 +213,7 @@ body {
   color: white;
   min-height: 468px;
   background-image: linear-gradient(to top, rgba(155, 95, 4, 0.8), rgba(155, 95, 4, 0.8)), url('../images/footer-image.jpeg');
+  background-position: center;
 }
 
 .center-contents {
@@ -201,6 +229,7 @@ body {
 }
 
 .footer {
+  border-top: 1px solid #9E9E9E;
   padding-top: 24px;
   padding-bottom: 24px;
   min-height: 76px;
@@ -243,18 +272,52 @@ body {
 .close-popup {
   cursor: pointer;
   text-align: right;
+  
 }
 
 .close-popup-button {
+  margin-top: -40px;
   padding: 10px;
   border-radius: 5px;
+  position: fixed;
 }
 
 .close-popup-button:hover {
   background-color: #9E9E9E;
 }
 
+.popup-response-blok {
+  text-align: center;
+}
 
+@media screen and (min-width: 769px) {
+  .popup-response-blok { position: fixed; }
+
+  .invalids {
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .popup-response-blok { 
+    position: static !important; 
+  }
+  a.button.small-text {
+    width: 100%;
+  }
+
+  .invalids {
+    display: inherit;
+  }
+}
+
+.invalids {
+  text-align: center;
+  padding: 15px 10px 15px 10px;
+  border-radius: 50px;
+  border: 1px solid #E0E0E0;
+  margin-bottom: 20px;
+}
 
 .vacancy-closed-image {
   vertical-align: bottom;
@@ -294,9 +357,10 @@ body {
 }
 
 .carousel {
-  display: flex;
-  max-width: 1000px;
+  display: -webkit-box;
   gap: 20px;
+  position: absolute;
+  left: calc(50vw - (max(370px, 20vw) + 20px) * 2.5 + 10px);
 }
 
 .carousel.sliding-transition {
@@ -304,17 +368,54 @@ body {
 }
 
 .carousel-image {
-  width: 370px;
-  height: 100%;
-  padding: 20px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  width: max(370px, 20vw);
   text-align: start;
 }
 
+.carousel-card-container {
+  height: 100%;
+  width: max(370px, 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-card {
+  height: 100%; // Сделать в 1 размер
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+}
+
+.carousel-choosed-card {
+  animation: ch-color-2 0.5s forwards;
+}
+
+.carousel-not-choosed-card {
+  animation: ch-color-1 0.5s forwards;
+}
+
+@keyframes ch-color-1 {
+  from {
+    background-color: #FFF3E0;
+  }
+  to {
+    background-color: white;
+  }
+}
+
+@keyframes ch-color-2 {
+  from {
+    background-color: white;
+  }
+  to {
+    background-color: #FFF3E0;
+  }
+}
+
 .carousel-text {
-  width: 330px;
-  text-align: center;
+  width: max(330px, 100%);
+  text-align: left;
 }
 
 .arrow-button {
